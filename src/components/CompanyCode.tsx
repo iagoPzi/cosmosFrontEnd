@@ -5,9 +5,12 @@ import bandeira from "../assets/bandeira.png";
 const Container = styled.div`
     font-size: 1.25rem;
 `
+interface CompanyCodeProps{
+    BackPage: () => void,
+    ForwardPage: () => void
+}
 
-
-export function CompanyCode(){
+export function CompanyCode(props:CompanyCodeProps){
 
     const [companyCod, setCompanyCod] = useState('');
 
