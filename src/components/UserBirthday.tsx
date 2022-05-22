@@ -8,21 +8,26 @@ const Container = styled.div``
 
 interface UserBirthdayProps{
     BackPage: () => void,
-    ForwardPage: () => void
+    ForwardPage: () => void,
+    UserDay: (Day:Number) => void,
+    UserMonth: (Month:Number) => void,
+    UserYear: (Year:Number) => void
+
 }
 
 export function UserBirthday(props:UserBirthdayProps){
 
-    const [userDay, setUserDay] = useState(0);
-    const [userMonth, setUserMonth] = useState(0);
-    const [userYear, setUserYear] = useState(0);
+    const [userDay, setUserDay] = useState(1);
+    const [userMonth, setUserMonth] = useState(1);
+    const [userYear, setUserYear] = useState(1990);
 
     function submitBirthday(event: FormEvent){
         event.preventDefault();
-        const UserBirthdayDate = ({
-            userDay, userMonth, userYear
-        })
-        console.log(UserBirthdayDate)
+        props.UserDay(userDay);
+        props.UserMonth(userMonth);
+        props.UserYear(userYear);
+        props.ForwardPage();
+        
     }
 
     return(
@@ -81,7 +86,7 @@ export function UserBirthday(props:UserBirthdayProps){
                                 </select>
                             </div>
                         </div>
-                        <button type="submit" onClick={props.ForwardPage}
+                        <button type="submit" onClick={submitBirthday}
                         className="bg-[#7A40D3] rounded-md hover:bg-[#642BBB] w-[24rem] h-[2.5rem] mt-5">Pousar</button>
                     </form>
 

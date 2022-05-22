@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* body {
+    box-sizing: border-box;
+}
+
+button {
+    @apply bg-[#7A40D3] rounded-full transition-colors hover:bg-[#642BBB] focus:bg-[#642BBB]
+}
