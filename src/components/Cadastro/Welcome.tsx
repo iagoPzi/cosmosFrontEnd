@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import satelite from '../assets/satelite.png'
+import satelite from '../../assets/satelite.png'
 
 
 

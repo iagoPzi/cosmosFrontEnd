@@ -1,7 +1,7 @@
 import { ArrowLeft } from "phosphor-react";
 import { useState } from "react";
 import styled from "styled-components";
-import bandeira from "../assets/bandeira.png";
+import bandeira from "../../assets/bandeira.png";
 
 const Container = styled.div`
     font-size: 1.25rem;
@@ -17,13 +17,13 @@ export function CompanyCode(props:CompanyCodeProps){
     const [companyCode, setCompanyCode] = useState('');
 
     function SubmitPousar(){
-        props.CompanyCode(companyCode),
+       props.CompanyCode(companyCode),
         props.UserData()
     }
     return (
         
         <>
-            <Container className="bg-[url('./assets/bgCadastro.png')] h-[100vh] flex justify-center items-center text-white">
+            <Container className="bg-[url('./assets/bgCadastro.png')] h-[100vh] flex justify-center items-center text-white flex-wrap">
 
                 <button 
                 onClick={props.BackPage}

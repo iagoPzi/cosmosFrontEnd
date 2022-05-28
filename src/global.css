@@ -6,6 +6,10 @@
     box-sizing: border-box;
 }
 
-button {
-    @apply bg-[#7A40D3] rounded-full transition-colors hover:bg-[#642BBB] focus:bg-[#642BBB]
+.btn {
+    @apply bg-[#7A40D3] text-white rounded-md transition-colors hover:bg-[#642BBB] focus:bg-[#642BBB] py-[.7rem]
+}
+
+.cadInput{
+    @apply p-2 rounded-md text-black mt-1 border-[1px] border-[#A2ABCC]
 }

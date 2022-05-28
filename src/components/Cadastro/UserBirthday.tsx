@@ -32,7 +32,7 @@ export function UserBirthday(props:UserBirthdayProps){
 
     return(
         <>
-            <Container className="relative h-[100vh] bg-[url('./assets/bgTerra.png')] flex justify-center items-center text-white">
+            <Container className=" h-[100vh] bg-[url('./assets/bgTerra.png')] flex justify-center items-center text-white">
                 
                 <button 
                 onClick={props.BackPage}
@@ -40,7 +40,7 @@ export function UserBirthday(props:UserBirthdayProps){
                 <ArrowLeft size={20} className="text-white"/>
                 </button>
 
-                <div className="w-[50rem] h-[27rem] backdrop-blur-md bg-[#00000013] flex flex-col justify-center items-center gap-10">
+                <div className="backdrop-blur-md bg-[#00000013] flex flex-col justify-center items-center gap-10 py-[8rem] px-[10rem] mx-5">
                     <div className="text-center">
                     <strong className="font-black text-[1.5rem]">Data de chegada na Terra</strong>
                     <p className="font-normal text-[1.25rem]">Nos conte sua data de nascimento ;)</p>

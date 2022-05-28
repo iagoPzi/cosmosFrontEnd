@@ -4,7 +4,7 @@ import { useState } from "react";
 import { ArrowLeft, CaretLeft, Check, Plus } from "phosphor-react";
 import styled from "styled-components";
 
-import astronauta from '../assets/astronauta.png'
+import astronauta from '../../assets/astronauta.png'
 
 
 
