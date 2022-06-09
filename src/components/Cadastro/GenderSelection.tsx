@@ -5,24 +5,24 @@ import { ArrowLeft, CaretLeft, Check, Plus } from "phosphor-react";
 import styled from "styled-components";
 
 import astronauta from '../../assets/astronauta.png'
+import { Link, useNavigate } from "react-router-dom";
 
 
 
 interface GenderSelectionProps{
-    BackPage: () => void,
-    ForwardPage: () => void
     GenderSelect: (Gender:string) => void
 }
 
 
 export function GenderSelection(props: GenderSelectionProps){
+    const navigate = useNavigate();
 
     const [genderSelect, setGenderSelect] = useState('');
     const [otherGenderActive, setOtherGenderActive] = useState(true);
     
     function OtherGenderSelect(){
-        props.ForwardPage();
         props.GenderSelect(genderSelect)
+        navigate('/birthday');
     }
 
     return(
@@ -30,13 +30,14 @@ export function GenderSelection(props: GenderSelectionProps){
 
             <Container className="bg-[url('./assets/bgCadastro.png')] bg-bottom h-[100vh]">
                 
+                <Link to={'/'}>
                 <button 
                 className="cursor-pointer bg-[#00000034] p-2 rounded-full backdrop-blur-md hover:bg-[#642BBB] focus:bg-[#642BBB] transition-colors text-sm md:text-[1.5rem] md:absolute md:top-20
                 md:left-16"
-                onClick={props.BackPage}
                 >
                 <ArrowLeft className="text-white"/>
                 </button>
+                </Link>
 
                 <div className="h-[93vh] flex flex-wrap justify-center items-center md:h-full md:gap-[5rem]">
 

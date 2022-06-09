@@ -1,14 +1,14 @@
 import { FormEvent, useState } from "react";
+import { useNavigate  } from "react-router-dom";
 
 import { ArrowLeft } from "phosphor-react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 
 const Container = styled.div``
 
 interface UserBirthdayProps{
-    BackPage: () => void,
-    ForwardPage: () => void,
     UserDay: (Day:Number) => void,
     UserMonth: (Month:Number) => void,
     UserYear: (Year:Number) => void
@@ -16,38 +16,37 @@ interface UserBirthdayProps{
 }
 
 export function UserBirthday(props:UserBirthdayProps){
+    const navigate = useNavigate();
 
     const [userDay, setUserDay] = useState(1);
     const [userMonth, setUserMonth] = useState(1);
     const [userYear, setUserYear] = useState(1990);
 
-    function submitBirthday(event: FormEvent){
-        event.preventDefault();
+    function submitBirthday(e: FormEvent){
+        e.preventDefault();
         props.UserDay(userDay);
         props.UserMonth(userMonth);
         props.UserYear(userYear);
-        props.ForwardPage();
-        
+        navigate("/companycode");
     }
 
     return(
         <>
-            <Container className=" h-[100vh] bg-[url('./assets/bgTerra.png')] flex justify-center items-center text-white">
+            <Container className=" h-[100vh] bg-[url('./assets/bgTerra.png')] flex justify-center items-center text-white bg-right-top">
                 
-                <button 
-                onClick={props.BackPage}
+                <Link to={'/cep'}  
                 className="cursor-pointer absolute top-10 left-10 bg-[#00000034] p-3 rounded-full backdrop-blur-md hover:bg-[#642BBB] transition-colors">
                 <ArrowLeft size={20} className="text-white"/>
-                </button>
+                </Link>
 
-                <div className="backdrop-blur-md bg-[#00000013] flex flex-col justify-center items-center gap-10 py-[8rem] px-[10rem] mx-5">
+                <div className="backdrop-blur-md bg-[#00000013] flex flex-col justify-center items-center gap-10 w-[840px] h-[490px] mx-5">
                     <div className="text-center">
                     <strong className="font-black text-[1.5rem]">Data de chegada na Terra</strong>
                     <p className="font-normal text-[1.25rem]">Nos conte sua data de nascimento ;)</p>
                     </div>
 
                     <form onSubmit={submitBirthday} className="flex gap-5 flex-col items-center">
-                        <div className="flex gap-5">
+                        <div className="flex gap-5 flex-col sm:flex-row">
                             <div className="flex flex-col">
                                 <label className="text-sm mb-1">Dia</label>
                                 <select value={userDay} onChange={e => setUserDay(Number(e.target.value))}
@@ -63,7 +62,7 @@ export function UserBirthday(props:UserBirthdayProps){
 
                             <div className="flex flex-col">
                                 <label className="text-sm mb-1">Mês</label>
-                                <select value={userMonth} onChange={e => setUserMonth(Number(e.target.value))} className="w-[10rem] py-2 px-3 text-black rounded-sm">
+                                <select value={userMonth} onChange={e => setUserMonth(Number(e.target.value))} className="w-[10rem] py-2 px-3 text-black rounded-sm ">
                                     { Object.entries(optionsMonth).map((item) => {
                                         
                                         return(
@@ -86,8 +85,9 @@ export function UserBirthday(props:UserBirthdayProps){
                                 </select>
                             </div>
                         </div>
+                        
                         <button type="submit" onClick={submitBirthday}
-                        className="bg-[#7A40D3] rounded-md hover:bg-[#642BBB] w-[24rem] h-[2.5rem] mt-5">Pousar</button>
+                        className="btn w-full">Pousar</button>
                     </form>
 
                 </div>

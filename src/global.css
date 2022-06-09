@@ -7,7 +7,7 @@
 }
 
 .btn {
-    @apply bg-[#7A40D3] text-white rounded-md transition-colors hover:bg-[#642BBB] focus:bg-[#642BBB] py-[.7rem]
+    @apply bg-[#7A40D3] text-white rounded-md hover:bg-[#642BBB] focus:bg-[#642BBB] py-[.7rem] max-w-[384px] transition-colors
 }
 
 .cadInput{

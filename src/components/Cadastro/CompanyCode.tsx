@@ -1,5 +1,6 @@
 import { ArrowLeft } from "phosphor-react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import bandeira from "../../assets/bandeira.png";
 
@@ -7,7 +8,6 @@ const Container = styled.div`
     font-size: 1.25rem;
 `
 interface CompanyCodeProps{
-    BackPage: () => void,
     CompanyCode:(code:string) => void,
     UserData: () => void
 }
@@ -25,11 +25,10 @@ export function CompanyCode(props:CompanyCodeProps){
         <>
             <Container className="bg-[url('./assets/bgCadastro.png')] h-[100vh] flex justify-center items-center text-white flex-wrap">
 
-                <button 
-                onClick={props.BackPage}
+                <Link to={'/birthday'}
                 className="cursor-pointer absolute top-10 left-10 bg-[#00000034] p-3 rounded-full backdrop-blur-md hover:bg-[#642BBB] transition-colors">
                 <ArrowLeft size={20} className="text-white"/>
-                </button>
+                </Link>
 
                 <div className="backdrop-blur-md bg-[#00000013] w-[28rem] h-[30rem] flex flex-col text-center justify-center gap-[2rem] p-[2rem] rounded-xl mt-[-4rem]">
                     <strong className="text-2xl">Digite o código da empresa em que você trabalha</strong>

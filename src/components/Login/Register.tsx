@@ -1,41 +1,56 @@
 import { Eye, EyeClosed } from "phosphor-react";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 
 import CosmosLogo from "../../assets/logoCosmos.svg";
+import { api } from "../../services/api";
 
-export function LoginInicio() {
+
+export function Register() {
   const [ID, setID] = useState(1);
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [confirmaSenha, setConfirmaSenha] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [confirmaSenhaType, setConfirmaSenhaType] = useState("password");
+  const [showPassword1, setShowPassword1] = useState(false);
+
 
   const SubmitForm = (e: FormEvent) => {
+
+   
+
     if (senha === confirmaSenha) {
       e.preventDefault();
       setID(ID + 1);
+
       const User = {
-        ID,
         nome,
         email,
-        senha,
-        confirmaSenha,
+        senha
       };
 
-      alert('ola')
+      api.post("/users", User.email);
+  
 
-      setNome(''),
-      setEmail(''),
-      setSenha(''),
-      setConfirmaSenha(''),
-      setShowPassword(false),
-      setConfirmaSenhaType("password")
+        setNome(""),
+        setEmail(""),
+        setSenha(""),
+        setConfirmaSenha(""),
+        setShowPassword(false),
+        setShowPassword1(false)
+        
     } else {
+      e.preventDefault();
       alert("senha errada");
     }
   };
+
+  useEffect(() => {
+    api.get("/users").then(response => {
+      console.log(response.data);
+    });
+  }, [])
+ 
 
   return (
     <>
@@ -83,7 +98,10 @@ export function LoginInicio() {
                 />
               </div>
               <div className="flex flex-col relative">
-                <button type="button" className="text-lg absolute right-2 top-[2.1rem] cursor-pointer text-[#6B78AE]">
+                <button
+                  type="button"
+                  className="text-lg absolute right-2 top-[2.1rem] cursor-pointer text-[#6B78AE]"
+                >
                   {showPassword ? (
                     <EyeClosed onClick={() => setShowPassword(false)} />
                   ) : (
@@ -97,17 +115,20 @@ export function LoginInicio() {
                   value={senha}
                   onChange={(e) => setSenha(e.target.value)}
                   id="Senha"
-                  type={showPassword ? 'text' : 'password'}
+                  type={!showPassword ? "text" : "password"}
                   placeholder="Digite sua senha aqui"
                   className="cadInput"
                 />
               </div>
               <div className="flex flex-col relative">
-                <button type="button" className="text-lg absolute right-2 top-[2.1rem] cursor-pointer text-[#6B78AE]">
-                  {showPassword ? (
-                    <EyeClosed onClick={() => setShowPassword(false)} />
+                <button
+                  type="button"
+                  className="text-lg absolute right-2 top-[2.1rem] cursor-pointer text-[#6B78AE]"
+                >
+                  {showPassword1 ? (
+                    <EyeClosed onClick={() => setShowPassword1(false)} />
                   ) : (
-                    <Eye onClick={() => setShowPassword(true)} />
+                    <Eye onClick={() => setShowPassword1(true)} />
                   )}
                 </button>
                 <label htmlFor="ConfirmaSenha" className="self-start">
@@ -117,7 +138,7 @@ export function LoginInicio() {
                   value={confirmaSenha}
                   onChange={(e) => setConfirmaSenha(e.target.value)}
                   id="ConfirmaSenha"
-                  type={showPassword ? 'text' : 'password'}
+                  type={!showPassword1 ? "text" : "password"}
                   placeholder="Digite sua senha aqui"
                   className="cadInput"
                 />

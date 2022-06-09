@@ -1,13 +1,12 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import satelite from '../../assets/satelite.png'
 
 
 
-interface WelcomeProps{
-    ForwardPage: (page:any) => void
-}
 
-export function Welcome(props: WelcomeProps) {
+
+export function Welcome() {
     return(
         <>
         <Container className="h-[100vh] bg-[url('./assets/bgEspaco.png')] flex flex-col text-white justify-center items-center md:flex-row">
@@ -20,8 +19,8 @@ export function Welcome(props: WelcomeProps) {
 
                     <p>Antes de começarmos, precisamos saber<br />um pouco mais sobre você.</p>
 
-                    <button onClick={props.ForwardPage} type="button"
-                    className="bg-[#7A40D3] rounded-md transition-colors hover:bg-[#642BBB] focus:bg-[#642BBB] w-fit p-2 px-10">Começar</button>
+                    <Link type="button"
+                    className="bg-[#7A40D3] rounded-md transition-colors hover:bg-[#642BBB] focus:bg-[#642BBB] w-fit p-2 px-10" to={'/gender'}>Começar</Link>
                 
             </div>
             <img src={satelite} alt="Imagem de um satélite"
