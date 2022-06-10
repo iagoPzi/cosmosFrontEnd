@@ -14,24 +14,22 @@ export function Register() {
   const [showPassword, setShowPassword] = useState(false);
   const [showPassword1, setShowPassword1] = useState(false);
 
+  const [user, setUser] = useState([]);
 
   const SubmitForm = (e: FormEvent) => {
-
-   
 
     if (senha === confirmaSenha) {
       e.preventDefault();
       setID(ID + 1);
 
-      const User = {
-        nome,
-        email,
-        senha
-      };
 
-      api.post("/users", User.email);
+      const data ={
+        nome, email, senha
+      }
   
+      api.post('/users', data)
 
+       
         setNome(""),
         setEmail(""),
         setSenha(""),
@@ -45,12 +43,10 @@ export function Register() {
     }
   };
 
-  useEffect(() => {
-    api.get("/users").then(response => {
-      console.log(response.data);
-    });
-  }, [])
- 
+   useEffect(() => {
+     api.get("/users")
+     .then(response => setUser(response.data)
+     )}, []);
 
   return (
     <>
@@ -115,7 +111,7 @@ export function Register() {
                   value={senha}
                   onChange={(e) => setSenha(e.target.value)}
                   id="Senha"
-                  type={!showPassword ? "text" : "password"}
+                  type={showPassword ? "text" : "password"}
                   placeholder="Digite sua senha aqui"
                   className="cadInput"
                 />
@@ -138,7 +134,7 @@ export function Register() {
                   value={confirmaSenha}
                   onChange={(e) => setConfirmaSenha(e.target.value)}
                   id="ConfirmaSenha"
-                  type={!showPassword1 ? "text" : "password"}
+                  type={showPassword1 ? "text" : "password"}
                   placeholder="Digite sua senha aqui"
                   className="cadInput"
                 />

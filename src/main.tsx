@@ -9,27 +9,21 @@ import { createServer, Model } from "miragejs"
 createServer({
 
   models: {
-    user: Model,
+    users: Model,
   },
 
-  seeds(server){
-    server.db.loadData({
-      users:[
-        { id: 1, nome: "João", email:'joao@email.com', password:'joao123' },
-        { id: 2, nome: "Maria", email:'maria@email.com', password:'maria123' },
-      ]
-    })
-  },
 
   routes() {
     this.namespace = "api"
 
     this.get("/users", () => {
-      return this.db.users
+      return this.schema.all('users')
     })
 
-    this.post('/users', (data) => {
-      return this.db.users.insert(data)
+    this.post('/users', (schema, request) => {
+      const data = JSON.parse(request.requestBody)
+
+      return schema.create('users', data) 
     })
   }
 })
